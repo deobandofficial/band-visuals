@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#151412">
+<title>Song Visuals</title>
+<script>(function(){var t='dark';try{t=localStorage.getItem('bandTheme')||'dark'}catch(e){}document.documentElement.setAttribute('data-theme',t)})()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#151412;--card:#1D1B18;--line:#34312B;--ink:#EFEBE2;--mute:#A39E92;--acc:#D2402F;--acct:#E8806F;--link:#E8806F;--on:#FBF8F1;--hd:'Barlow Condensed','Arial Narrow','Helvetica Neue',Arial,sans-serif;--bd:'Barlow','Helvetica Neue',Arial,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="light"]{color-scheme:light;--bg:#E9E4D8;--card:#F3EFE5;--line:#CBC4B3;--ink:#1B1915;--mute:#625D52;--acc:#B3321F;--acct:#B3321F;--link:#9C2B1A}
+@media (prefers-color-scheme:light){:root[data-theme="auto"]{color-scheme:light;--bg:#E9E4D8;--card:#F3EFE5;--line:#CBC4B3;--ink:#1B1915;--mute:#625D52;--acc:#B3321F;--acct:#B3321F;--link:#9C2B1A}}
+*{box-sizing:border-box;border-radius:0}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--bd);min-height:100vh}
+#app{max-width:880px;margin:0 auto;padding:24px clamp(16px,4vw,40px) 60px}
+a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.back{display:inline-block;font:600 15px var(--bd);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--mute);margin-bottom:22px}
+.back:hover{color:var(--ink)}
+h1{font:700 46px/1 var(--hd);text-transform:uppercase;letter-spacing:.03em;margin:0 0 10px}
+.sub{color:var(--mute);font-size:16px;margin:0 0 8px;max-width:56ch}
+h2{font:700 26px/1.1 var(--hd);text-transform:uppercase;letter-spacing:.04em;margin:40px 0 0;padding-top:12px;border-top:2px solid var(--ink)}
+.list{border-top:1px solid var(--line);margin-top:14px}
+a.song,.empty{display:flex;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+a.song:hover .nm b{text-decoration:underline;text-underline-offset:4px}
+.no{flex:none;width:52px;font:700 40px/1 var(--hd);color:var(--acct)}
+.nm{flex:1;min-width:0}.nm b{display:block;font-size:20px;font-weight:700}
+.mute{color:var(--mute);font-size:15px}
+.tag{flex:none;font:700 11px/1 var(--bd);letter-spacing:.12em;text-transform:uppercase;background:var(--acc);color:var(--on);padding:6px 9px}
+.empty{color:var(--mute)}
+.foot{margin-top:56px;padding-top:14px;border-top:1px solid var(--line);display:flex;gap:20px;font-size:14px}
+.foot a{color:var(--mute)}.foot a:hover{color:var(--ink)}
+@media (min-width:760px){body{font-size:18px}h1{font-size:56px}h2{font-size:30px}}
+</style></head><body><div id="app">
+<a class="back" href="https://deobandofficial.github.io/deoband/">Back to Deo Band</a>
+<h1>Song Visuals</h1>
+<p class="sub">Pick a song. Step through it scene by scene to perform live, or play the track and the visuals move with it.</p>
+<h2>Songs</h2>
+<div class="list" id="g"></div>
+<footer class="foot"><a href="https://deobandofficial.github.io/deoband/terms.html">Terms</a><a href="https://deobandofficial.github.io/deoband/privacy.html">Privacy</a></footer>
+</div>
+<script>
+// To add a song: copy a song folder under songs/, then add one line below.
+var SONGS=[
+ {name:"Ghammad Einak",artist:"Cairokee",path:"songs/ghammad-einak/",scenes:80},
+ {name:"Die With a Smile",artist:"Lady Gaga & Bruno Mars",path:"songs/die-with-a-smile/",scenes:32,live:true}
+];
+var g=document.getElementById("g");
+SONGS.forEach(function(s,i){
+ var a=document.createElement("a");a.className="song";a.href=s.path;
+ a.innerHTML='<span class="no"></span><span class="nm"><b></b><span class="mute"></span></span><span class="tag">Open</span>';
+ a.querySelector(".no").textContent=("0"+(i+1)).slice(-2);
+ a.querySelector("b").textContent=s.name;
+ a.querySelector(".mute").textContent=s.artist+" · "+s.scenes+" scenes"+(s.live?" · live mode":"");
+ g.appendChild(a);
+});
+var e=document.createElement("div");e.className="empty";e.textContent="More songs coming";g.appendChild(e);
+</script></body></html>
